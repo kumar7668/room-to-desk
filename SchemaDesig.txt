@@ -1,0 +1,129 @@
+Schema Design for Training Nomination Module
+
+1. Users Table
+| Column Name       | Data Type     | Description                                  |
+|-------------------|---------------|----------------------------------------------|
+| user_id           | INT (PK)      | Unique ID for each user.                     |
+| name              | VARCHAR(100)  | Full name of the user.                       |
+| email             | VARCHAR(100)  | Email address of the user.                   |
+| role              | ENUM          | Role of the user (Employee, Manager, L&D).   |
+| manager_id        | INT (FK)      | Reference to the manager of the user.        |
+| created_at        | DATETIME      | Timestamp when the user was created.         |
+| updated_at        | DATETIME      | Timestamp when the user was last updated.    |
+
+2. Trainings Table
+| Column Name               | Data Type     | Description                                  |
+|---------------------------|---------------|----------------------------------------------|
+| training_id               | INT (PK)      | Unique ID for each training.                 |
+| title                     | VARCHAR(255)  | Title of the training.                       |
+| skill                     | VARCHAR(100)  | Skill associated with the training.          |
+| required_proficiency      | VARCHAR(50)   | Required proficiency level.                  |
+| description               | TEXT          | Description/agenda of the training.          |
+| date_time                 | DATETIME      | Date and time of the training.               |
+| applicable_level          | VARCHAR(50)   | Level of employees applicable for training.  |
+| training_mode             | ENUM          | Mode of training (Online, Offline, Hybrid).  |
+| location_link             | VARCHAR(255)  | Link or location of the training.            |
+| max_seats                 | INT           | Maximum number of seats available.           |
+| feedback_required         | BOOLEAN       | Whether feedback is required (Y/N).          |
+| mandatory_training        | BOOLEAN       | Whether training is mandatory (Y/N).         |
+| open_for_nomination       | BOOLEAN       | Whether training is open for nomination.     |
+| last_nomination_date      | DATETIME      | Last date to nominate for the training.      |
+| created_by                | INT (FK)      | User ID of the creator (L&D admin).          |
+| created_at                | DATETIME      | Timestamp when the training was created.     |
+| updated_at                | DATETIME      | Timestamp when the training was updated.     |
+
+3. Nominations Table
+| Column Name           | Data Type     | Description                                  |
+|-----------------------|---------------|----------------------------------------------|
+| nomination_id         | INT (PK)      | Unique ID for each nomination.               |
+| training_id           | INT (FK)      | Reference to the training.                  |
+| user_id               | INT (FK)      | Reference to the employee being nominated.  |
+| nominated_by          | INT (FK)      | Reference to the user who nominated.        |
+| status                | ENUM          | Status of nomination (Pending, Approved, Rejected, Withdrawn). |
+| waitlist_position     | INT           | Position in the waitlist (if applicable).   |
+| reason                | TEXT          | Reason for rejection or withdrawal.         |
+| created_at            | DATETIME      | Timestamp when the nomination was created.  |
+| updated_at            | DATETIME      | Timestamp when the nomination was updated.  |
+
+4. Waitlist Table
+| Column Name           | Data Type     | Description                                  |
+|-----------------------|---------------|----------------------------------------------|
+| waitlist_id           | INT (PK)      | Unique ID for each waitlist entry.           |
+| training_id           | INT (FK)      | Reference to the training.                  |
+| user_id               | INT (FK)      | Reference to the employee on the waitlist.  |
+| position              | INT           | Position of the employee in the waitlist.   |
+| created_at            | DATETIME      | Timestamp when the waitlist entry was created. |
+
+5. Programs Table
+| Column Name           | Data Type     | Description                                  |
+|-----------------------|---------------|----------------------------------------------|
+| program_id            | INT (PK)      | Unique ID for each program.                 |
+| title                 | VARCHAR(255)  | Title of the program.                       |
+| description           | TEXT          | Description of the program.                 |
+| created_by            | INT (FK)      | User ID of the creator (Manager/L&D).       |
+| expected_completion   | DATETIME      | Expected completion date for the program.   |
+| created_at            | DATETIME      | Timestamp when the program was created.     |
+| updated_at            | DATETIME      | Timestamp when the program was updated.     |
+
+6. Program Assignments Table
+| Column Name           | Data Type     | Description                                  |
+|-----------------------|---------------|----------------------------------------------|
+| assignment_id         | INT (PK)      | Unique ID for each assignment.              |
+| program_id            | INT (FK)      | Reference to the program.                   |
+| user_id               | INT (FK)      | Reference to the employee assigned.         |
+| assigned_by           | INT (FK)      | User ID of the assigner (Manager/L&D).      |
+| status                | ENUM          | Status of assignment (Pending, Completed).  |
+| created_at            | DATETIME      | Timestamp when the assignment was created.  |
+| updated_at            | DATETIME      | Timestamp when the assignment was updated.  |
+
+7. Feedback Table
+| Column Name           | Data Type     | Description                                  |
+|-----------------------|---------------|----------------------------------------------|
+| feedback_id           | INT (PK)      | Unique ID for each feedback entry.          |
+| training_id           | INT (FK)      | Reference to the training.                  |
+| user_id               | INT (FK)      | Reference to the employee providing feedback. |
+| rating                | INT           | Rating provided by the employee.            |
+| comments              | TEXT          | Comments provided by the employee.          |
+| submitted_at          | DATETIME      | Timestamp when feedback was submitted.      |
+
+8. Articles Table
+| Column Name           | Data Type     | Description                                  |
+|-----------------------|---------------|----------------------------------------------|
+| article_id            | INT (PK)      | Unique ID for each article.                 |
+| title                 | VARCHAR(255)  | Title of the article.                       |
+| file_path             | VARCHAR(255)  | Path to the uploaded PDF file.              |
+| spotlight             | BOOLEAN       | Whether the article is spotlighted.         |
+| uploaded_by           | INT (FK)      | User ID of the uploader (L&D admin).        |
+| uploaded_at           | DATETIME      | Timestamp when the article was uploaded.    |
+
+9. Quiz/Trivia Table
+| Column Name           | Data Type     | Description                                  |
+|-----------------------|---------------|----------------------------------------------|
+| quiz_id               | INT (PK)      | Unique ID for each quiz/trivia.             |
+| type                  | ENUM          | Type (Quiz, Trivia).                        |
+| question              | TEXT          | Question or trivia message.                 |
+| options               | JSON          | Options for quiz (if applicable).           |
+| correct_answer        | VARCHAR(100)  | Correct answer for quiz (if applicable).    |
+| created_by            | INT (FK)      | User ID of the creator (L&D admin).         |
+| created_at            | DATETIME      | Timestamp when the quiz/trivia was created. |
+
+Relationships
+1. Users Table:
+   - One-to-Many with Nominations (user_id → nominated_by).
+   - One-to-Many with Program Assignments (user_id → assigned_by).
+   - One-to-Many with Trainings (user_id → created_by).
+
+2. Trainings Table:
+   - One-to-Many with Nominations (training_id → training_id).
+   - One-to-Many with Waitlist (training_id → training_id).
+
+3. Nominations Table:
+   - Many-to-One with Users (user_id → user_id).
+   - Many-to-One with Trainings (training_id → training_id).
+
+4. Programs Table:
+   - One-to-Many with Program Assignments (program_id → program_id).
+
+5. Feedback Table:
+   - Many-to-One with Trainings (training_id → training_id).
+   - Many-to-One with Users (user_id → user_id).
