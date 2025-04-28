@@ -42,53 +42,16 @@
     .header::after, .footer::after {
       content: "";
       position: absolute;
-      width: 100px;
-      height: 100px;
-      right: 10px;
-      top: 10px;
-      background: none;
-      z-index: 1;
-      border: none;
-    }
-    .circuit {
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      width: 80px;
-      height: 80px;
-      z-index: 2;
-    }
-    .circuit div {
-      position: absolute;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 50%;
-    }
-    .circuit .line {
-      width: 2px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.5);
-      left: 50%;
       top: 0;
-      transform: translateX(-50%);
-    }
-    .circuit .circle {
-      width: 10px;
-      height: 10px;
-      top: 40px;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .circuit .small-line {
-      width: 30px;
-      height: 2px;
-      top: 45px;
-      left: 25%;
-    }
-    .circuit .small-circle {
-      width: 6px;
-      height: 6px;
-      top: 45px;
-      left: 60%;
+      right: 0;
+      width: 150px;
+      height: 150px;
+      background-image: url('your-circuit-image.webp'); /* Put your webp file path here */
+      background-repeat: no-repeat;
+      background-position: top right;
+      background-size: contain;
+      z-index: 1;
+      opacity: 0.7;
     }
     .header span {
       position: absolute;
@@ -97,7 +60,7 @@
       font-size: 20px;
       font-weight: bold;
       letter-spacing: 2px;
-      z-index: 3;
+      z-index: 2;
     }
     .content {
       padding: 30px;
@@ -126,12 +89,6 @@
   <div class="header">
     Training Nomination Approved
     <span>SAMSUNG</span>
-    <div class="circuit">
-      <div class="line"></div>
-      <div class="circle"></div>
-      <div class="small-line"></div>
-      <div class="small-circle"></div>
-    </div>
   </div>
 
   <div class="content">
@@ -148,14 +105,9 @@
 
   <div class="footer">
     &copy; Samsung. All rights reserved.
-    <div class="circuit" style="top: auto; bottom: 10px;">
-      <div class="line" style="height:30px;"></div>
-      <div class="circle" style="top:30px;"></div>
-      <div class="small-line" style="top:35px;"></div>
-      <div class="small-circle" style="top:35px;"></div>
-    </div>
   </div>
 </div>
 
 </body>
 </html>
+
