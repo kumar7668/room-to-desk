@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,17 +17,44 @@
       background: #ffffff;
       border: 1px solid #ddd;
     }
-    .header {
+    .header, .footer {
+      position: relative;
       background: linear-gradient(90deg, #4B6CB7 0%, #182848 100%);
       color: white;
       padding: 20px;
       text-align: left;
       font-size: 24px;
       font-weight: bold;
-      position: relative;
+      overflow: hidden;
     }
-    .header::after {
-      content: "SAMSUNG";
+    .header::after, .footer::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 120px;
+      height: 120px;
+      background:
+        radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px);
+      background-position: 0 0, 5px 5px;
+      background-size: 10px 10px;
+      opacity: 0.5;
+      transform: rotate(45deg);
+    }
+    .header::before, .footer::before {
+      content: "";
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 60px;
+      height: 60px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 10px;
+      transform: rotate(20deg);
+      opacity: 0.7;
+    }
+    .header span {
       position: absolute;
       right: 20px;
       top: 20px;
@@ -44,11 +72,8 @@
       color: black;
     }
     .footer {
-      background: linear-gradient(90deg, #4B6CB7 0%, #182848 100%);
-      color: white;
-      text-align: center;
-      padding: 10px;
       font-size: 12px;
+      text-align: center;
     }
     .footer small {
       display: block;
@@ -61,6 +86,7 @@
 <div class="email-container">
   <div class="header">
     Training Nomination Approved
+    <span>SAMSUNG</span>
   </div>
 
   <div class="content">
