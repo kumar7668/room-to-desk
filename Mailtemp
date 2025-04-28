@@ -27,32 +27,68 @@
       font-weight: bold;
       overflow: hidden;
     }
-    .header::after, .footer::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 120px;
-      height: 120px;
-      background:
-        radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px),
-        radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px);
-      background-position: 0 0, 5px 5px;
-      background-size: 10px 10px;
-      opacity: 0.5;
-      transform: rotate(45deg);
-    }
     .header::before, .footer::before {
       content: "";
       position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(white 1px, transparent 1px);
+      background-size: 12px 12px;
+      opacity: 0.2;
+      z-index: 0;
+    }
+    .header::after, .footer::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
       right: 10px;
       top: 10px;
-      width: 60px;
-      height: 60px;
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 10px;
-      transform: rotate(20deg);
-      opacity: 0.7;
+      background: none;
+      z-index: 1;
+      border: none;
+    }
+    .circuit {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      width: 80px;
+      height: 80px;
+      z-index: 2;
+    }
+    .circuit div {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+    }
+    .circuit .line {
+      width: 2px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.5);
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+    }
+    .circuit .circle {
+      width: 10px;
+      height: 10px;
+      top: 40px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .circuit .small-line {
+      width: 30px;
+      height: 2px;
+      top: 45px;
+      left: 25%;
+    }
+    .circuit .small-circle {
+      width: 6px;
+      height: 6px;
+      top: 45px;
+      left: 60%;
     }
     .header span {
       position: absolute;
@@ -61,6 +97,7 @@
       font-size: 20px;
       font-weight: bold;
       letter-spacing: 2px;
+      z-index: 3;
     }
     .content {
       padding: 30px;
@@ -74,6 +111,8 @@
     .footer {
       font-size: 12px;
       text-align: center;
+      padding-top: 40px;
+      padding-bottom: 20px;
     }
     .footer small {
       display: block;
@@ -87,6 +126,12 @@
   <div class="header">
     Training Nomination Approved
     <span>SAMSUNG</span>
+    <div class="circuit">
+      <div class="line"></div>
+      <div class="circle"></div>
+      <div class="small-line"></div>
+      <div class="small-circle"></div>
+    </div>
   </div>
 
   <div class="content">
@@ -103,6 +148,12 @@
 
   <div class="footer">
     &copy; Samsung. All rights reserved.
+    <div class="circuit" style="top: auto; bottom: 10px;">
+      <div class="line" style="height:30px;"></div>
+      <div class="circle" style="top:30px;"></div>
+      <div class="small-line" style="top:35px;"></div>
+      <div class="small-circle" style="top:35px;"></div>
+    </div>
   </div>
 </div>
 
