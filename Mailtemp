@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Training Nomination Approved</title>
+  <style>
+    body {
+      font-family: Calibri, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .email-container {
+      max-width: 700px;
+      margin: 20px auto;
+      background: #ffffff;
+      border: 1px solid #ddd;
+    }
+    .header {
+      background: linear-gradient(90deg, #4B6CB7 0%, #182848 100%);
+      color: white;
+      padding: 20px;
+      text-align: left;
+      font-size: 24px;
+      font-weight: bold;
+      position: relative;
+    }
+    .header::after {
+      content: "SAMSUNG";
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .content {
+      padding: 30px;
+      color: black;
+      font-size: 12px;
+    }
+    .content h2 {
+      text-align: center;
+      color: black;
+    }
+    .footer {
+      background: linear-gradient(90deg, #4B6CB7 0%, #182848 100%);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 12px;
+    }
+    .footer small {
+      display: block;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="email-container">
+  <div class="header">
+    Training Nomination Approved
+  </div>
+
+  <div class="content">
+    <h2>Training Nomination Request Approved</h2>
+    <p>Dear &lt;&lt; &gt;&gt;,</p>
+    <p>&lt;&lt; lorem ipsum &gt;&gt;</p>
+
+    <p style="margin-top: 30px;">
+      <strong>Font Type:</strong> Calibri<br>
+      <strong>Font Size:</strong> 11/12<br>
+      <strong>Font Color:</strong> Black
+    </p>
+  </div>
+
+  <div class="footer">
+    &copy; Samsung. All rights reserved.
+  </div>
+</div>
+
+</body>
+</html>
