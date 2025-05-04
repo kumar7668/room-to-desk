@@ -1,0 +1,32 @@
+# Required Packages
+# Install these before running the script:
+# pip install pandas openpyxl sqlalchemy pymysql
+
+import pandas as pd
+from sqlalchemy import create_engine
+
+# Step 1: Load Excel file
+file_path = "your_excel_file.xlsx"  # Replace with your actual file path
+df = pd.read_excel(file_path)
+
+# Step 2: Clean column names (correct typos)
+df.columns = [col.strip().lower().replace(" ", "_") for col in df.columns]
+df.rename(columns={
+    'tittle': 'title',
+    'classificationa': 'classification',
+    'cousre_name': 'course_name',
+    'traing_hous': 'training_hours'
+}, inplace=True)
+
+# Step 3: Clean values
+df['id'] = 'www.ecmaple' + df['id'].astype(str)
+df['training_hours'] = df['training_hours'].str.replace(' hours', '').astype(str)
+
+# Step 4: Connect to MySQL
+# Replace with your actual DB credentials
+engine = create_engine("mysql+pymysql://username:password@localhost/your_db_name")
+
+# Step 5: Insert into MySQL
+df.to_sql('your_table_name', con=engine, if_exists='append', index=False)
+
+print("Data successfully inserted.")
