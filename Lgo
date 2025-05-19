@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hexagon Logo</title>
+  <style>
+    body {
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .logo {
+      position: relative;
+      width: 100px;
+      height: 115px;
+    }
+
+    .hex {
+      width: 60px;
+      height: 60px;
+      background: white;
+      clip-path: polygon(
+        50% 0%, 
+        93% 25%, 
+        93% 75%, 
+        50% 100%, 
+        7% 75%, 
+        7% 25%
+      );
+      position: absolute;
+    }
+
+    .hex.top-left {
+      top: 0;
+      left: 0;
+    }
+
+    .hex.top-right {
+      top: 0;
+      right: 0;
+    }
+
+    .hex.bottom {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <div class="hex top-left"></div>
+    <div class="hex top-right"></div>
+    <div class="hex bottom"></div>
+  </div>
+</body>
+</html>
